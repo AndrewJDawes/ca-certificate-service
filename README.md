@@ -1,5 +1,5 @@
-# express-static-server
-Express static server
+# ca-certificate-service
+CA Certificate Service
 
 ## Set up
 - Add CA certs to `data/certs/ca`
