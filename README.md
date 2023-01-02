@@ -20,6 +20,12 @@ Express static server
 - Examples
   - Linux
     - Ubuntu
+      - Reference
+        - https://serverfault.com/questions/414578/certutil-function-failed-security-library-bad-database
+        - https://www.richud.com/wiki/Ubuntu_chrome_browser_import_self_signed_certificate
+        - https://web.archive.org/web/20121020174226/http://blog.avirtualhome.com/adding-ssl-certificates-to-google-chrome-linux-ubuntu/
+        - https://superuser.com/questions/104146/add-permanent-ssl-certificate-exception-in-chrome-linux
+      - Script
         ```
         #!/usr/bin/env bash
         # IMPORTANT - CHANGE THESE VARIABLES
