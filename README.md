@@ -61,6 +61,10 @@ Express static server
     - `sudo curl -k -L localhost/ca -o ~/Downloads/My_Trusted_Root.crt && sudo security add-trusted-cert -d -r trustRoot -k "/Library/Keychains/System.keychain" ~/Downloads/My_Trusted_Root.crt`
   - iPhone
     - https://deliciousbrains.com/ssl-certificate-authority-for-local-https-development/#installing-root-cert
+  - Android
+    - Will need to SSH into phone first
+      - https://gist.github.com/raveenb/ab3217798c827be889b83b584d70b08b
+    - Should be similar after to Ubuntu instructions above
   - cURL
     - cURL uses its own bundle of CA certificates and ignores the place where we install trusted certificates on the host
     - We can override this by pointing curl to use our trusted certs location using `--cacert` option
