@@ -19,9 +19,9 @@ Express static server
   - https://deliciousbrains.com/ssl-certificate-authority-for-local-https-development/#installing-root-cert
 - Examples
   - Linux
-    - `sudo curl -k -L localhost:/ca -o /usr/local/share/ca-certificates/My_Trusted_Root.crt && sudo update-ca-certificates`
+    - `sudo curl -k -L localhost/ca -o /usr/local/share/ca-certificates/My_Trusted_Root.crt && sudo update-ca-certificates`
   - macOS
-    - `sudo curl -k -L localhost:/ca -o ~/Downloads/My_Trusted_Root.crt && sudo security add-trusted-cert -d -r trustRoot -k "/Library/Keychains/System.keychain" ~/Downloads/My_Trusted_Root.crt`
+    - `sudo curl -k -L localhost/ca -o ~/Downloads/My_Trusted_Root.crt && sudo security add-trusted-cert -d -r trustRoot -k "/Library/Keychains/System.keychain" ~/Downloads/My_Trusted_Root.crt`
   - iPhone
     - https://deliciousbrains.com/ssl-certificate-authority-for-local-https-development/#installing-root-cert
   - cURL
