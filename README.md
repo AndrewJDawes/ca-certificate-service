@@ -19,9 +19,24 @@ Express static server
   - https://deliciousbrains.com/ssl-certificate-authority-for-local-https-development/#installing-root-cert
 - Examples
   - Linux
-    - `sudo curl -k -L localhost/ca -o /usr/local/share/ca-certificates/My_Trusted_Root.crt && sudo update-ca-certificates`
-    - For Ubuntu, will also need to add manually to Chrome
-      - https://docs.vmware.com/en/VMware-Adapter-for-SAP-Landscape-Management/2.1.0/Installation-and-Administration-Guide-for-VLA-Administrators/GUID-D60F08AD-6E54-4959-A272-458D08B8B038.html
+    - Ubuntu
+        ```
+        # Install tools if needed
+        sudo apt-get install libnss3-tools
+        sudo apt-get install curl
+
+        # Download CA cert
+        sudo curl -k -L localhost/ca -o /usr/local/share/ca-certificates/My_Trusted_Root.crt && sudo update-ca-certificates
+
+        # Remove or change nssdb password if needed
+        certutil -W -d sql:$HOME/.pki/nssdb
+
+        # Add cert
+        certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n "My_Trusted_Root" -i  /usr/local/share/ca-certificates/My_Trusted_Root.crt
+
+        # Confirm cert is added
+        certutil -d sql:$HOME/.pki/nssdb -L | grep "My_Trusted_Root"
+        ```
   - macOS
     - `sudo curl -k -L localhost/ca -o ~/Downloads/My_Trusted_Root.crt && sudo security add-trusted-cert -d -r trustRoot -k "/Library/Keychains/System.keychain" ~/Downloads/My_Trusted_Root.crt`
   - iPhone
