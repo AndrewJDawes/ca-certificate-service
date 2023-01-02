@@ -2,7 +2,7 @@ ARG ARCH=
 FROM ${ARCH}node:19
 
 # Create app directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
@@ -12,8 +12,8 @@ COPY package*.json ./
 # If you are building your code for production
 RUN npm ci --omit=dev
 
-# Bundle app source
-COPY . .
+# Bundle app source into a src directory
+COPY src ./src
 
 EXPOSE 80
-CMD [ "node", "server.js" ]
+CMD [ "node", "src/server.js" ]
