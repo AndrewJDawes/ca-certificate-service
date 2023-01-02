@@ -54,7 +54,7 @@ app.post('/domain', upload.single('csr'), (req, res) => {
     // Run openssl script and return signed certificate
     exec(`sh /app/src/scripts/sign.sh ${domain} ${outputPath}`, (error, stdout, stderr) => {
       if (null !== error) {
-        throw Error(error);
+        throw Error(error.message);
       }
       res.contentType('application/x-x509-ca-cert');
       res.send(stdout);
