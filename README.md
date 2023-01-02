@@ -20,6 +20,8 @@ Express static server
 - Examples
   - Linux
     - `sudo curl -k -L localhost/ca -o /usr/local/share/ca-certificates/My_Trusted_Root.crt && sudo update-ca-certificates`
+    - For Ubuntu, will also need to add manually to Chrome
+      - https://docs.vmware.com/en/VMware-Adapter-for-SAP-Landscape-Management/2.1.0/Installation-and-Administration-Guide-for-VLA-Administrators/GUID-D60F08AD-6E54-4959-A272-458D08B8B038.html
   - macOS
     - `sudo curl -k -L localhost/ca -o ~/Downloads/My_Trusted_Root.crt && sudo security add-trusted-cert -d -r trustRoot -k "/Library/Keychains/System.keychain" ~/Downloads/My_Trusted_Root.crt`
   - iPhone
