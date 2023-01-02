@@ -21,21 +21,35 @@ Express static server
   - Linux
     - Ubuntu
         ```
-        # Install tools if needed
-        sudo apt-get install libnss3-tools
-        sudo apt-get install curl
+        #!/usr/bin/env bash
+        # IMPORTANT - CHANGE THESE VARIABLES
+        MY_CA_CERTIFICATE_DOWNLOAD_URL="https://my.certs.com/ca"
+        MY_CA_CERTFICATE_FILENAME="Trusted_Root.crt"
+        MY_CA_CERTIFICATE_NICKNAME="My Trusted Root"
 
-        # Download CA cert
-        sudo curl -k -L localhost/ca -o /usr/local/share/ca-certificates/My_Trusted_Root.crt && sudo update-ca-certificates
+        # Fetch the cert
+        sudo curl -k -L "$MY_CA_CERTIFICATE_DOWNLOAD_URL" -o "/usr/local/share/ca-certificates/$MY_CA_CERTFICATE_FILENAME"
 
-        # Remove or change nssdb password if needed
-        certutil -W -d sql:$HOME/.pki/nssdb
+        # Update certificates
+        sudo update-ca-certificates
+
+        # Ensure certutil database exists
+        if [ -d $HOME/.pki/nssdb ]; then
+            :
+            # Remove or change nssdb password if needed
+            # certutil -d sql:$HOME/.pki/nssdb -W
+        else
+            mkdir -p $HOME/.pki/nssdb
+            chmod 700 ~/.pki/nssdb
+            certutil -d sql:$HOME/.pki/nssdb -N
+        fi
 
         # Add cert
-        certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n "My_Trusted_Root" -i  /usr/local/share/ca-certificates/My_Trusted_Root.crt
+        certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n "$MY_CA_CERTIFICATE_NICKNAME" -i  "/usr/local/share/ca-certificates/$MY_CA_CERTFICATE_FILENAME"
 
         # Confirm cert is added
-        certutil -d sql:$HOME/.pki/nssdb -L | grep "My_Trusted_Root"
+        certutil -d sql:$HOME/.pki/nssdb -L | grep "$MY_CA_CERTIFICATE_NICKNAME"
+
         ```
   - macOS
     - `sudo curl -k -L localhost/ca -o ~/Downloads/My_Trusted_Root.crt && sudo security add-trusted-cert -d -r trustRoot -k "/Library/Keychains/System.keychain" ~/Downloads/My_Trusted_Root.crt`
