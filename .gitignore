@@ -108,3 +108,5 @@ dist
 
 # Testing
 test.csr
+test.sh
+test.pem
