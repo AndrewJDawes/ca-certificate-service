@@ -3,9 +3,6 @@ services:
     ca_certificate_service:
         image: ghcr.io/andrewjdawes/ca-certificate-service:latest
         restart: always
-        build:
-            context: .
-            dockerfile: Dockerfile
         expose:
             - 80
         volumes:
