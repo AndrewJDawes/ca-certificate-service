@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+    ca_certificate_service:
+        image: ghcr.io/andrewjdawes/ca-certificate-service:latest
+        restart: always
+        build:
+            context: .
+            dockerfile: Dockerfile
+        expose:
+            - 80
+        volumes:
+            - ca-certificate-service-domain:/app/data/domain
+            - ca-certificate-service-ca:/app/data/ca:rw
+            - ca-certificate-service-secrets:/app/data/secrets:ro
+volumes:
+    ca-certificate-service-domain:
+    ca-certificate-service-ca:
+    ca-certificate-service-secrets:

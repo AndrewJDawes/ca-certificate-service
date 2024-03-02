@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+    ca_certificate_service:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        volumes:
+            - ./dev/data/domain:/app/data/domain
+            - ./dev/data/ca:/app/data/ca:rw
+            - ./dev/data/secrets:/app/data/secrets:ro

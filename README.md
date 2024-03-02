@@ -2,6 +2,18 @@
 
 Express static server
 
+## Volumes
+
+-   `/app/data/domain`
+    -   This is where the domain certs will be stored
+    -   Recommend using a named volume or anonymous volume for this,
+-   `/app/data/ca`
+    -   This is where the CA certs will be stored
+    -   Recommend using a named volume or bind mount for this
+-   `/app/data/secrets`
+    -   This is where the CA key passphrase will be stored
+    -   Recommend using a named volume or bind mount for this
+
 ## Set up
 
 -   Add CA certs to `/data/ca/`
@@ -9,9 +21,9 @@ Express static server
     -   Cert file names
         -   `CA.key`
         -   `CA.pem`
--   If you need to generate CA certs
-    -   `openssl genrsa -des3 -out CA.key 2048`
-    -   `openssl req -x509 -new -nodes -key CA.key -sha256 -days 1825 -out CA.pem`
+    -   If you need to generate CA certs
+        -   `openssl genrsa -des3 -out CA.key 2048`
+        -   `openssl req -x509 -new -nodes -key CA.key -sha256 -days 1825 -out CA.pem`
 -   Add your CA.key passphrase to a file `/data/secrets/CA`
     -   Recommended to bind mount a volume to `/data/secrets/`
 
