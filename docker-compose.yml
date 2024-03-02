@@ -9,10 +9,10 @@ services:
         expose:
             - 80
         volumes:
-            - ca-certificate-service-domain:/app/data/domain
-            - ca-certificate-service-ca:/app/data/ca:rw
-            - ca-certificate-service-secrets:/app/data/secrets:ro
+            - ca_certificate_service_domain:/app/data/domain
+            - ca_certificate_service_ca:/app/data/ca:rw
+            - ca_certificate_service_secrets:/app/data/secrets:ro
 volumes:
-    ca-certificate-service-domain:
-    ca-certificate-service-ca:
-    ca-certificate-service-secrets:
+    ca_certificate_service_domain:
+    ca_certificate_service_ca:
+    ca_certificate_service_secrets:
